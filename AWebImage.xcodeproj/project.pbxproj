@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68276EF01D03C3D5009B3BBA /* AWExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68276EEF1D03C3D5009B3BBA /* AWExtensions.swift */; };
 		6883E41A1CFF2CF2006C7F52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883E4191CFF2CF2006C7F52 /* AppDelegate.swift */; };
 		6883E41C1CFF2CF2006C7F52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883E41B1CFF2CF2006C7F52 /* ViewController.swift */; };
 		6883E41F1CFF2CF2006C7F52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6883E41D1CFF2CF2006C7F52 /* Main.storyboard */; };
 		6883E4211CFF2CF2006C7F52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6883E4201CFF2CF2006C7F52 /* Assets.xcassets */; };
 		6883E4241CFF2CF2006C7F52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6883E4221CFF2CF2006C7F52 /* LaunchScreen.storyboard */; };
+		6883E42C1CFF2E0A006C7F52 /* AWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883E42B1CFF2E0A006C7F52 /* AWebImage.swift */; };
+		6883E42E1CFF3E07006C7F52 /* UIImageView+AWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883E42D1CFF3E07006C7F52 /* UIImageView+AWebImage.swift */; };
+		6883E4301D000EF0006C7F52 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883E42F1D000EF0006C7F52 /* PhotoDetailViewController.swift */; };
+		6883E4321D0018EE006C7F52 /* PhotosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883E4311D0018EE006C7F52 /* PhotosListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68276EEF1D03C3D5009B3BBA /* AWExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWExtensions.swift; sourceTree = "<group>"; };
 		6883E4161CFF2CF2006C7F52 /* AWebImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AWebImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6883E4191CFF2CF2006C7F52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6883E41B1CFF2CF2006C7F52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,10 @@
 		6883E4201CFF2CF2006C7F52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6883E4231CFF2CF2006C7F52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6883E4251CFF2CF2006C7F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6883E42B1CFF2E0A006C7F52 /* AWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWebImage.swift; sourceTree = "<group>"; };
+		6883E42D1CFF3E07006C7F52 /* UIImageView+AWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+AWebImage.swift"; sourceTree = "<group>"; };
+		6883E42F1D000EF0006C7F52 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		6883E4311D0018EE006C7F52 /* PhotosListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +64,13 @@
 		6883E4181CFF2CF2006C7F52 /* AWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				6883E42B1CFF2E0A006C7F52 /* AWebImage.swift */,
+				6883E42D1CFF3E07006C7F52 /* UIImageView+AWebImage.swift */,
 				6883E4191CFF2CF2006C7F52 /* AppDelegate.swift */,
 				6883E41B1CFF2CF2006C7F52 /* ViewController.swift */,
+				68276EEF1D03C3D5009B3BBA /* AWExtensions.swift */,
+				6883E4311D0018EE006C7F52 /* PhotosListViewController.swift */,
+				6883E42F1D000EF0006C7F52 /* PhotoDetailViewController.swift */,
 				6883E41D1CFF2CF2006C7F52 /* Main.storyboard */,
 				6883E4201CFF2CF2006C7F52 /* Assets.xcassets */,
 				6883E4221CFF2CF2006C7F52 /* LaunchScreen.storyboard */,
@@ -136,7 +151,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6883E41C1CFF2CF2006C7F52 /* ViewController.swift in Sources */,
+				6883E4321D0018EE006C7F52 /* PhotosListViewController.swift in Sources */,
+				68276EF01D03C3D5009B3BBA /* AWExtensions.swift in Sources */,
+				6883E42C1CFF2E0A006C7F52 /* AWebImage.swift in Sources */,
 				6883E41A1CFF2CF2006C7F52 /* AppDelegate.swift in Sources */,
+				6883E4301D000EF0006C7F52 /* PhotoDetailViewController.swift in Sources */,
+				6883E42E1CFF3E07006C7F52 /* UIImageView+AWebImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +306,7 @@
 				6883E42A1CFF2CF2006C7F52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
