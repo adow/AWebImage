@@ -80,7 +80,7 @@ extension PhotoDetailViewController {
                     if let photo_dict = json["photo"] as? [String:AnyObject], image_url = photo_dict["image_url"] as? String{
                         let url = NSURL(string: image_url)!
                         dispatch_sync(dispatch_get_main_queue(), { 
-                            self.imageView.aw_downloadImageURL_loading(url, showLoading: true, completionBlock: { (_, _) in
+                            self.imageView.aw_downloadImageURL(url, showLoading: true, completionBlock: { (_, _) in
                                 
                             })    
                         })

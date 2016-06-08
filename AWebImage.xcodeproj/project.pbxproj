@@ -111,6 +111,7 @@
 				TargetAttributes = {
 					6883E4151CFF2CF2006C7F52 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = XV3VM72E4X;
 					};
 				};
 			};
@@ -269,10 +270,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: qin dao ping (Q8ZFZ9RX9H)";
 				INFOPLIST_FILE = AWebImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = adow.AWebImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9d5e7a6b-5dbc-45b9-b1c1-cbbd1993a69e";
 			};
 			name = Debug;
 		};
@@ -280,10 +284,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: qin dao ping (Q8ZFZ9RX9H)";
 				INFOPLIST_FILE = AWebImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = adow.AWebImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9d5e7a6b-5dbc-45b9-b1c1-cbbd1993a69e";
 			};
 			name = Release;
 		};

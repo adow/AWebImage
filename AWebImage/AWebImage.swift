@@ -31,6 +31,8 @@ class AWImageLoaderManager {
     var sessionConfiguration : NSURLSessionConfiguration!
     /// http 队列
     var sessionQueue : NSOperationQueue!
+    /// 共享单个 session
+    lazy var defaultSession : NSURLSession! = NSURLSession(configuration: self.sessionConfiguration, delegate: nil, delegateQueue: self.sessionQueue)
     init () {
         fastCache = NSCache()
         fastCache.totalCostLimit = 30 * 1024 * 1024
@@ -111,15 +113,16 @@ extension AWImageLoader {
         }
         /// fast cache
         if let cached_image = AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage {
-            NSLog("fast cache:%@", url.absoluteString)
+//            NSLog("fast cache:%@", url.absoluteString)
             f_callback(cached_image)
             return
         }
         /// origin
         /// request
-        let session = NSURLSession(configuration: AWImageLoaderManager.sharedManager.sessionConfiguration,
-                                   delegate: nil,
-                                   delegateQueue: AWImageLoaderManager.sharedManager.sessionQueue)
+//        let session = NSURLSession(configuration: AWImageLoaderManager.sharedManager.sessionConfiguration,
+//                                   delegate: nil,
+//                                   delegateQueue: AWImageLoaderManager.sharedManager.sessionQueue)
+        let session = AWImageLoaderManager.sharedManager.defaultSession
         let request = NSURLRequest(URL: url)
         self.task = session.dataTaskWithRequest(request) { (data, response, error) in
             if let error = error {
@@ -132,7 +135,7 @@ extension AWImageLoader {
                 return
             }
             dispatch_async(image_decode_queue, {
-                NSLog("origin:%@", url.absoluteString)
+//                NSLog("origin:%@", url.absoluteString)
                 let image = UIImage(data: _data) ?? emptyImage
                 AWImageLoaderManager.sharedManager.fastCache.setObject(image, forKey: fetch_key) /// fastCache
                 f_callback(image)

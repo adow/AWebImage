@@ -121,15 +121,11 @@ class PhotosListViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         if let photos = self.photos {
             let photo = photos.items[indexPath.row]
-            let image_url = photo.image_url
             if let imageView = cell.contentView.viewWithTag(1) as? UIImageView {
                 imageView.image = nil
-                imageView.aw_downloadImageURL_loading(NSURL(string: image_url)!, showLoading: true, completionBlock: { (_, _) in
+                imageView.aw_downloadImageURL(photo.imageURL, showLoading: false, completionBlock: { (_, _) in
                     
                 })
-//                imageView.aw_downloadImageURL_delay(NSURL(string: image_url)!, delay: true, showLoading: true, completionBlock: { (_, _) in
-//                    
-//                })
             }
         }
         return cell
@@ -152,11 +148,13 @@ extension PhotosListViewController {
         var name : String!
         var image_url : String!
         var image_format : String!
+        var imageURL: NSURL!
         init(dict:[String:AnyObject]) {
             self.id = Int.valueFromAnyObject(dict["id"])
             self.name = String.stringFromAnyObject(dict["name"])
             self.image_url = String.stringFromAnyObject(dict["image_url"])
             self.image_format = String.stringFromAnyObject(dict["image_format"])
+            self.imageURL = NSURL(string: self.image_url)
         }
     }
     struct PhotoListPaged {
