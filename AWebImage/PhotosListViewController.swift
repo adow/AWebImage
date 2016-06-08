@@ -123,7 +123,7 @@ class PhotosListViewController: UICollectionViewController {
             let photo = photos.items[indexPath.row]
             if let imageView = cell.contentView.viewWithTag(1) as? UIImageView {
                 imageView.image = nil
-                imageView.aw_downloadImageURL(photo.imageURL, showLoading: false, completionBlock: { (_, _) in
+                imageView.aw_downloadImageURL(photo.imageURL, showLoading: true, completionBlock: { (_, _) in
                     
                 })
             }
