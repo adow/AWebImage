@@ -98,12 +98,19 @@ class AWImageLoader : NSObject {
 extension AWImageLoader {
     func downloadImage(url:NSURL, callback : AWImageLoaderCallback){
         let fetch_key = url.absoluteString
+        /// fast cache
+        if let cached_image = AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage {
+//            NSLog("fast cache:%@", url.absoluteString)
+            callback(cached_image,url)
+            return
+        }
+        /// origin
         AWImageLoaderManager.sharedManager.addFetch(fetch_key, callback: callback)
         /// 用来将图片返回到所有的回调函数
         let f_callback = {
             (image:UIImage) -> () in
             if let f_list = AWImageLoaderManager.sharedManager.readFetch(fetch_key) {
-//                AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
+                AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
                 dispatch_async(dispatch_get_main_queue(), {
                     f_list.forEach({ (f) in
                         f(image,url)
@@ -111,17 +118,7 @@ extension AWImageLoader {
                 })
             }
         }
-        /// fast cache
-        if let cached_image = AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage {
-//            NSLog("fast cache:%@", url.absoluteString)
-            f_callback(cached_image)
-            return
-        }
-        /// origin
         /// request
-//        let session = NSURLSession(configuration: AWImageLoaderManager.sharedManager.sessionConfiguration,
-//                                   delegate: nil,
-//                                   delegateQueue: AWImageLoaderManager.sharedManager.sessionQueue)
         let session = AWImageLoaderManager.sharedManager.defaultSession
         let request = NSURLRequest(URL: url)
         self.task = session.dataTaskWithRequest(request) { (data, response, error) in
