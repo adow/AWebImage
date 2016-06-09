@@ -94,12 +94,21 @@ extension UIImageView {
             }
         }
     }
-    func aw_downloadImageURL_p(par:_AWImageLoaderPar) {
+    @objc private func aw_downloadImageURL_p(par:_AWImageLoaderPar) {
         self.aw_downloadImageURL(par.url, showLoading: par.showLoading, completionBlock: par.completionBlock)
     }
+    /// 只在 DefaultRunLoopMode 模式中加载
     func aw_downloadImageURL_delay(url:NSURL,
                                    showloading:Bool,
                                    completionBlock : AWImageLoaderCallback) {
+        /// 如果已经有存在的图片，就不要在 DefaultRunLoopMode 中加载
+        let loader = AWImageLoader()
+        if let cached_image = loader.imageFromFastCache(url) {
+            self.aw_hideLoading()
+            self.image = cached_image
+            completionBlock(cached_image, url)
+            return
+        }
         let par = _AWImageLoaderPar(url: url, showLoading: showloading, completionBlock: completionBlock)
         self.performSelector(#selector(UIImageView.aw_downloadImageURL_p(_:)), withObject: par, afterDelay: 0.0, inModes: [NSDefaultRunLoopMode,])
     }

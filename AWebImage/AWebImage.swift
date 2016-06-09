@@ -96,14 +96,18 @@ class AWImageLoader : NSObject {
 }
 
 extension AWImageLoader {
-    func downloadImage(url:NSURL, callback : AWImageLoaderCallback){
+    /// 获取已经处理号的图片
+    func imageFromFastCache(url:NSURL) -> UIImage? {
         let fetch_key = url.absoluteString
-        /// fast cache
-        if let cached_image = AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage {
-//            NSLog("fast cache:%@", url.absoluteString)
-            callback(cached_image,url)
+        return AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage
+    
+    }
+    func downloadImage(url:NSURL, callback : AWImageLoaderCallback){
+        if let cached_image = self.imageFromFastCache(url) {
+            callback(cached_image, url)
             return
         }
+        let fetch_key = url.absoluteString
         /// origin
         AWImageLoaderManager.sharedManager.addFetch(fetch_key, callback: callback)
         /// 用来将图片返回到所有的回调函数
