@@ -121,7 +121,7 @@ extension AWImageLoader {
             if let f_list = AWImageLoaderManager.sharedManager.readFetch(fetch_key) {
                 AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
                 dispatch_async(dispatch_get_main_queue(), {
-                    NSLog("f callback:%d",f_list.count)
+//                    NSLog("f callback:%d",f_list.count)
                     f_list.forEach({ (f) in
                         f(image,url)
                     })
@@ -139,11 +139,11 @@ extension AWImageLoader {
         let request = NSURLRequest(URL: url)
         self.task = session.dataTaskWithRequest(request) { (data, response, error) in
             if let error = error {
-//                NSLog("error:%@", error.domain)
+                NSLog("error:%@", error.domain)
             }
             /// no data
             guard let _data = data else {
-//                NSLog("no image:%@", url.absoluteString)
+                NSLog("no image:%@", url.absoluteString)
                 f_callback(emptyImage)
                 return
             }
