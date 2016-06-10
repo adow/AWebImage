@@ -42,61 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "487093315.971171"
+            timestampString = "487267983.501032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "aw_downloadImageURL(_:showLoading:completionBlock:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AWebImage/AWebImage.swift"
-            timestampString = "487174012.042324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "downloadImage(_:callback:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AWebImage.AWImageLoader.(downloadImage (__ObjC.NSURL, callback : (__ObjC.UIImage, __ObjC.NSURL) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "AWebImage"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/reynoldqin/codes/test/AWebImage/AWebImage/AWebImage.swift"
-                  timestampString = "486791052.295622"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "290">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AWebImage.AWImageLoader.(downloadImage (__ObjC.NSURL, callback : (__ObjC.UIImage, __ObjC.NSURL) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "AWebImage"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/reynoldqin/codes/test/AWebImage/AWebImage/AWebImage.swift"
-                  timestampString = "486791052.295835"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -107,70 +59,6 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AWebImage/AWebImage.swift"
-            timestampString = "487174012.042324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "downloadImage(_:callback:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AWebImage.AWImageLoader.(downloadImage (__ObjC.NSURL, callback : (__ObjC.UIImage, __ObjC.NSURL) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "AWebImage"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/reynoldqin/codes/test/AWebImage/AWebImage/AWebImage.swift"
-                  timestampString = "486791051.49133"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "45">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AWebImage.AWImageLoader.(downloadImage (__ObjC.NSURL, callback : (__ObjC.UIImage, __ObjC.NSURL) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "AWebImage"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/reynoldqin/codes/test/AWebImage/AWebImage/AWebImage.swift"
-                  timestampString = "486791051.491547"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "185">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AWebImage/AWebImage.swift"
-            timestampString = "487174012.042324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "downloadImage(_:callback:)"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -196,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/PhotosListViewController.swift"
-            timestampString = "487173636.9123"
+            timestampString = "487268506.06212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "191"
@@ -212,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/PhotosListViewController.swift"
-            timestampString = "487173636.9123"
+            timestampString = "487268506.06212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "loadPhotos(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -292,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "487093315.971171"
+            timestampString = "487267983.501032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "aw_downloadImageURL_p(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -308,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "487174426.380087"
+            timestampString = "487268506.06212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "aw_downloadImageURL_delay(_:showloading:completionBlock:)"
             landmarkType = "5">
          </BreakpointContent>

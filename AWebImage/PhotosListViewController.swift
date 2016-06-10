@@ -161,7 +161,7 @@ extension PhotosListViewController {
         }
     }
     struct PhotoListPaged {
-        var current_page : Int! = 1
+        var current_page : Int! = 0
         var total_pages : Int! = 0
         var total_items : Int! = 0
         var items : [PhotoListItem]! = []
@@ -187,14 +187,15 @@ extension PhotosListViewController {
         }
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfiguration)
-        let page = reload ? 1 : photos.current_page + 1
+        let page = photos.current_page + 1
         let url = NSURL(string: "https://api.500px.com/v1/photos?feature=editors&page=\(page)&consumer_key=7iL5EFteZ0j3OexGdDxnPANksfPwQZtD5SPaZhne")!
+        NSLog("url:%@", url)
         let request = NSURLRequest(URL: url)
         let task = session.dataTaskWithRequest(request) { [weak self](data, response, error) in
-            self?.loading = false
             if let data = data {
                 if let json = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String:AnyObject] {
                     dispatch_async(dispatch_get_main_queue(), {
+                        self?.loading = false
                         let oldTotal = self?.photos?.items.count ?? 0
                         self?.photos?.updateFromDict(json)
 //                        self?.collectionView?.reloadData()

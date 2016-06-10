@@ -24,7 +24,7 @@ private let emptyImage = UIImage()
 // MARK: - AWImageLoaderManager
 private let _sharedManager = AWImageLoaderManager()
 
-class AWImageLoaderManager {
+private class AWImageLoaderManager {
     /// 用来保存生成好图片
     var fastCache : NSCache!
     /// http 操作
@@ -33,7 +33,7 @@ class AWImageLoaderManager {
     var sessionQueue : NSOperationQueue!
     /// 共享单个 session
     lazy var defaultSession : NSURLSession! = NSURLSession(configuration: self.sessionConfiguration, delegate: nil, delegateQueue: self.sessionQueue)
-    init () {
+    private init () {
         fastCache = NSCache()
         fastCache.totalCostLimit = 30 * 1024 * 1024
         sessionQueue = NSOperationQueue()
@@ -55,20 +55,27 @@ extension AWImageLoaderManager {
     func readFetch(key:String) -> AWImageLoaderCallbackList? {
         return fetch_list[key]
     }
-    func addFetch(key:String, callback:AWImageLoaderCallback) {
-        dispatch_barrier_async(fetch_list_operation_queue) {
-            let f_list = fetch_list[key]
+    func addFetch(key:String, callback:AWImageLoaderCallback) -> Bool {
+        var skip = false
+        let f_list = fetch_list[key]
+        if f_list != nil {
+            skip = true
+        }
+        dispatch_barrier_sync(fetch_list_operation_queue) {
             if var f_list = f_list {
                 f_list.append(callback)
                 fetch_list[key] = f_list
+//                NSLog("callback list:%d",f_list.count)
             }
             else {
                 fetch_list[key] = [callback,]
             }
         }
+        return skip
+        
     }
     func removeFetch(key:String) {
-        dispatch_barrier_async(fetch_list_operation_queue) {
+        dispatch_barrier_sync(fetch_list_operation_queue) {
             fetch_list.removeValueForKey(key)
         }
     }
@@ -108,30 +115,35 @@ extension AWImageLoader {
             return
         }
         let fetch_key = url.absoluteString
-        /// origin
-        AWImageLoaderManager.sharedManager.addFetch(fetch_key, callback: callback)
         /// 用来将图片返回到所有的回调函数
         let f_callback = {
             (image:UIImage) -> () in
             if let f_list = AWImageLoaderManager.sharedManager.readFetch(fetch_key) {
                 AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
                 dispatch_async(dispatch_get_main_queue(), {
+                    NSLog("f callback:%d",f_list.count)
                     f_list.forEach({ (f) in
                         f(image,url)
                     })
                 })
             }
         }
+        /// origin
+        let skip = AWImageLoaderManager.sharedManager.addFetch(fetch_key, callback: callback)
+        if skip {
+//            NSLog("skip")
+            return
+        }
         /// request
         let session = AWImageLoaderManager.sharedManager.defaultSession
         let request = NSURLRequest(URL: url)
         self.task = session.dataTaskWithRequest(request) { (data, response, error) in
             if let error = error {
-                NSLog("error:%@", error.domain)
+//                NSLog("error:%@", error.domain)
             }
             /// no data
             guard let _data = data else {
-                NSLog("no image:%@", url.absoluteString)
+//                NSLog("no image:%@", url.absoluteString)
                 f_callback(emptyImage)
                 return
             }
