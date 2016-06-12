@@ -117,8 +117,8 @@
 		688A764E1D0D0FD0002CC798 /* AWebImage */ = {
 			isa = PBXGroup;
 			children = (
-				688A76591D0D1012002CC798 /* UIImageView+AWebImage.swift */,
 				688A765A1D0D1012002CC798 /* AWebImage.swift */,
+				688A76591D0D1012002CC798 /* UIImageView+AWebImage.swift */,
 				688A764F1D0D0FD0002CC798 /* AWebImage.h */,
 				688A76511D0D0FD0002CC798 /* Info.plist */,
 			);

@@ -119,11 +119,9 @@ extension AWImageLoader {
             (image:UIImage) -> () in
             if let f_list = AWImageLoaderManager.sharedManager.readFetch(fetch_key) {
                 AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
-                dispatch_async(dispatch_get_main_queue(), {
-//                    NSLog("f callback:%d",f_list.count)
-                    f_list.forEach({ (f) in
-                        f(image,url)
-                    })
+                dispatch_apply(f_list.count, dispatch_get_main_queue(), { (i) in
+                    let f = f_list[i]
+                    f(image,url)
                 })
             }
         }
