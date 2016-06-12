@@ -58,7 +58,8 @@ extension UIImageView {
     }
 }
 extension UIImageView {
-    class _AWImageLoaderPar :NSObject{
+    /// 为了要执行 selector
+    private class _AWImageLoaderPar :NSObject{
         var url : NSURL!
         var showLoading:Bool!
         var completionBlock : AWImageLoaderCallback!
@@ -120,6 +121,7 @@ extension UIImageView {
             completionBlock(cached_image, url)
             return
         }
+        /// 开始延时获取图片任务
         let par = _AWImageLoaderPar(url: url, showLoading: showloading, completionBlock: completionBlock)
         self.performSelector(#selector(UIImageView.aw_downloadImageURL_p(_:)), withObject: par, afterDelay: 0.0, inModes: [NSDefaultRunLoopMode,])
     }

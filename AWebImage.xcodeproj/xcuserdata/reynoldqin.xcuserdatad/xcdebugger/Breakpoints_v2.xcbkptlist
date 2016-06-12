@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "487268506.06212"
+            timestampString = "487390249.793003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "aw_downloadImageURL_delay(_:showloading:completionBlock:)"
             landmarkType = "5">
          </BreakpointContent>

@@ -12,13 +12,6 @@ import UIKit
 typealias AWImageLoaderCallback = (UIImage,NSURL) -> ()
 typealias AWImageLoaderCallbackList = [AWImageLoaderCallback]
 
-/// 回调列表
-private var fetch_list : [String:AWImageLoaderCallbackList] = [:]
-/// 用来操作回调列表的锁
-private var fetch_list_operation_queue : dispatch_queue_t = dispatch_queue_create("adow.adimageloader.fetchlist_operation_queue", DISPATCH_QUEUE_CONCURRENT)
-/// 用来编码图片的进程
-private var image_decode_queue : dispatch_queue_t =
-        dispatch_queue_create("adow.awimageloader.decode_queue", DISPATCH_QUEUE_CONCURRENT)
 
 private let emptyImage = UIImage()
 // MARK: - AWImageLoaderManager
@@ -27,6 +20,12 @@ private let _sharedManager = AWImageLoaderManager()
 private class AWImageLoaderManager {
     /// 用来保存生成好图片
     var fastCache : NSCache!
+    /// 回调列表
+    var fetchList:[String:AWImageLoaderCallbackList] = [:]
+    /// 用于操作回调列表的队列
+    var fetchListOperationQueue:dispatch_queue_t = dispatch_queue_create("adow.adimageloader.fetchlist_operation_queue", DISPATCH_QUEUE_CONCURRENT)
+    /// 用于继续图片编码的队列
+    var imageDecodeQueue : dispatch_queue_t = dispatch_queue_create("adow.awimageloader.decode_queue", DISPATCH_QUEUE_CONCURRENT)
     /// http 操作
     var sessionConfiguration : NSURLSessionConfiguration!
     /// http 队列
@@ -53,35 +52,35 @@ private class AWImageLoaderManager {
 }
 extension AWImageLoaderManager {
     func readFetch(key:String) -> AWImageLoaderCallbackList? {
-        return fetch_list[key]
+        return fetchList[key]
     }
     func addFetch(key:String, callback:AWImageLoaderCallback) -> Bool {
         var skip = false
-        let f_list = fetch_list[key]
+        let f_list = fetchList[key]
         if f_list != nil {
             skip = true
         }
-        dispatch_barrier_sync(fetch_list_operation_queue) {
+        dispatch_barrier_sync(fetchListOperationQueue) {
             if var f_list = f_list {
                 f_list.append(callback)
-                fetch_list[key] = f_list
+                self.fetchList[key] = f_list
 //                NSLog("callback list:%d",f_list.count)
             }
             else {
-                fetch_list[key] = [callback,]
+                self.fetchList[key] = [callback,]
             }
         }
         return skip
         
     }
     func removeFetch(key:String) {
-        dispatch_barrier_sync(fetch_list_operation_queue) {
-            fetch_list.removeValueForKey(key)
+        dispatch_barrier_sync(fetchListOperationQueue) {
+            self.fetchList.removeValueForKey(key)
         }
     }
     func clearFetch() {
-        dispatch_barrier_async(fetch_list_operation_queue) {
-            fetch_list.removeAll()
+        dispatch_barrier_async(fetchListOperationQueue) {
+            self.fetchList.removeAll()
         }
     }
     
@@ -147,7 +146,7 @@ extension AWImageLoader {
                 f_callback(emptyImage)
                 return
             }
-            dispatch_async(image_decode_queue, {
+            dispatch_async(AWImageLoaderManager.sharedManager.imageDecodeQueue, {
 //                NSLog("origin:%@", url.absoluteString)
                 let image = UIImage(data: _data) ?? emptyImage
                 AWImageLoaderManager.sharedManager.fastCache.setObject(image, forKey: fetch_key) /// fastCache
