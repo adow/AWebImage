@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWebImage
 
 private let reuseIdentifier = "cell-image"
 

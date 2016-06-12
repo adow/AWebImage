@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWebImage
 
 class PhotoDetailViewController: UIViewController {
     

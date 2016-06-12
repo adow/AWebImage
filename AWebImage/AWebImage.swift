@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-typealias AWImageLoaderCallback = (UIImage,NSURL) -> ()
-typealias AWImageLoaderCallbackList = [AWImageLoaderCallback]
+public typealias AWImageLoaderCallback = (UIImage,NSURL) -> ()
+public typealias AWImageLoaderCallbackList = [AWImageLoaderCallback]
 
 
 private let emptyImage = UIImage()
@@ -93,9 +93,9 @@ extension AWImageLoaderManager {
 }
 
 // MARK: - AWImageLoader
-class AWImageLoader : NSObject {
+public class AWImageLoader : NSObject {
     var task : NSURLSessionTask?
-    override init() {
+    public override init() {
         super.init()
         
     }
@@ -103,12 +103,12 @@ class AWImageLoader : NSObject {
 
 extension AWImageLoader {
     /// 获取已经处理号的图片
-    func imageFromFastCache(url:NSURL) -> UIImage? {
+    public func imageFromFastCache(url:NSURL) -> UIImage? {
         let fetch_key = url.absoluteString
         return AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage
     
     }
-    func downloadImage(url:NSURL, callback : AWImageLoaderCallback){
+    public func downloadImage(url:NSURL, callback : AWImageLoaderCallback){
         if let cached_image = self.imageFromFastCache(url) {
             callback(cached_image, url)
             return
@@ -158,7 +158,7 @@ extension AWImageLoader {
     }
 }
 extension AWImageLoader {
-    func cancelTask() {
+    public func cancelTask() {
         guard let _task = self.task else {
             return
         }

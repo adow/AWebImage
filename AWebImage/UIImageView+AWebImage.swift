@@ -12,9 +12,9 @@ private var imageUrlKey : Void?
 private var imageSetKey : Void?
 private let imageLoadHudTag = 99989
 
-extension UIImageView {
+public extension UIImageView {
     /// 下载的 imageurl
-    var aw_image_url : NSURL? {
+    public var aw_image_url : NSURL? {
         get{
             return objc_getAssociatedObject(self, &imageUrlKey) as? NSURL
         }
@@ -22,7 +22,7 @@ extension UIImageView {
             objc_setAssociatedObject(self, &imageUrlKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-    var aw_image_set : Bool {
+    public var aw_image_set : Bool {
         get{
             return (objc_getAssociatedObject(self, &imageSetKey) as? Bool) ?? false
         }
@@ -57,7 +57,7 @@ extension UIImageView {
         }
     }
 }
-extension UIImageView {
+public extension UIImageView {
     /// 为了要执行 selector
     private class _AWImageLoaderPar :NSObject{
         var url : NSURL!
@@ -71,7 +71,7 @@ extension UIImageView {
         
     }
     /// 下载图片,如果有 delay 参数，那他会在 NSDefaultRunLoopMode 模式下运行
-    func aw_downloadImageURL(url:NSURL,
+    public func aw_downloadImageURL(url:NSURL,
                                    showLoading:Bool,
                                    completionBlock:AWImageLoaderCallback){
         /// 先设置要下载的图片地址
@@ -107,7 +107,7 @@ extension UIImageView {
         self.aw_downloadImageURL(par.url, showLoading: par.showLoading, completionBlock: par.completionBlock)
     }
     /// 只在 DefaultRunLoopMode 模式中加载
-    func aw_downloadImageURL_delay(url:NSURL,
+    public func aw_downloadImageURL_delay(url:NSURL,
                                    showloading:Bool,
                                    completionBlock : AWImageLoaderCallback) {
         /// 要一开始就重置状态，因为后面的方法被延时提交，而在返回的时候可能已经又其他图片从快速缓存中获取了

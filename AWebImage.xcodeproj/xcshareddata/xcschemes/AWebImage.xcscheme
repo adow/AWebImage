@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6883E4151CFF2CF2006C7F52"
-               BuildableName = "AWebImage.app"
+               BlueprintIdentifier = "688A764C1D0D0FD0002CC798"
+               BuildableName = "AWebImage.framework"
                BlueprintName = "AWebImage"
                ReferencedContainer = "container:AWebImage.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6883E4151CFF2CF2006C7F52"
-            BuildableName = "AWebImage.app"
+            BlueprintIdentifier = "688A764C1D0D0FD0002CC798"
+            BuildableName = "AWebImage.framework"
             BlueprintName = "AWebImage"
             ReferencedContainer = "container:AWebImage.xcodeproj">
          </BuildableReference>
@@ -55,8 +55,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6883E4151CFF2CF2006C7F52"
-            BuildableName = "AWebImage.app"
+            BlueprintIdentifier = "688A764C1D0D0FD0002CC798"
+            BuildableName = "AWebImage.framework"
             BlueprintName = "AWebImage"
             ReferencedContainer = "container:AWebImage.xcodeproj">
          </BuildableReference>
@@ -74,8 +74,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6883E4151CFF2CF2006C7F52"
-            BuildableName = "AWebImage.app"
+            BlueprintIdentifier = "688A764C1D0D0FD0002CC798"
+            BuildableName = "AWebImage.framework"
             BlueprintName = "AWebImage"
             ReferencedContainer = "container:AWebImage.xcodeproj">
          </BuildableReference>
