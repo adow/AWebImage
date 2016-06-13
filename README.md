@@ -40,12 +40,19 @@
 	$(SRCROOT)/Carthage/Build/iOS/AWebImage.framework
 
 ### Cocoapods
+
+在 Podfile 中添加
 	
 	source 'https://github.com/CocoaPods/Specs.git'
 	platform :ios, '8.0'
+	target '对应的 Target 名字'
 	use_frameworks!
+
+	pod 'AWebImage', '~> 0.1.0'
 	
-	pod 'AWebImage', '~> 0.1.2'
+运行
+
+	$ pod install
 	
 ### Git Submodule
 
@@ -64,3 +71,6 @@
 
 `iOS 7` 及以下版本无法使用 `Embedeed Framework`, 只能把 `AWebImage.swift`, `UIImageView+AWebImage.swift` 复制到项目中，使用的时候也不用 `import AWebImage`.
 
+## 关于 AWebImage 的实现过程
+
+[被忽视的 NSURLCache - 实现一个网络图片下载工具 AWebImage](http://codingnext.com/preview/you-forget-nsurlcache.html)
