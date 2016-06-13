@@ -453,6 +453,7 @@
 				688A76271D0D0CFE002CC798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		688A76561D0D0FD0002CC798 /* Build configuration list for PBXNativeTarget "AWebImage" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +462,7 @@
 				688A76581D0D0FD0002CC798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
