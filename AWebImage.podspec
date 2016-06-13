@@ -2,10 +2,10 @@ Pod::Spec.new do |s|
 
   s.name         = "AWebImage"
   s.version      = "0.1.0"
-  s.summary      = "A library for downloading and caching image from web. Implemented by Swift."
+  s.summary      = "A library for downloading and caching image from web. Implemented by NSURLCache in Swift."
 
   s.description  = <<-DESC
-		 A library for downloading and caching image from web. Implemented by Swift.
+		 A library for downloading and caching image from web. Implemented by NSURLCache in Swift.
                    DESC
 
   s.homepage     = "https://github.com/adow/AWebImage.git"
