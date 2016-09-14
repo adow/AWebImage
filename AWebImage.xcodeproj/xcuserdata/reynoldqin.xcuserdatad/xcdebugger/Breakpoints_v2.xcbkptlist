@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
             endingLineNumber = "84"
-            landmarkName = "aw_downloadImageURL(_:showLoading:completionBlock:)"
-            landmarkType = "5">
+            landmarkName = "aw_downloadImageURL(url:showLoading:completionBlock:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -185,8 +185,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
             endingLineNumber = "106"
-            landmarkName = "aw_downloadImageURL_p(_:)"
-            landmarkType = "5">
+            landmarkName = "aw_downloadImageURL_p(par:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -201,8 +201,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
             endingLineNumber = "125"
-            landmarkName = "aw_downloadImageURL_delay(_:showloading:completionBlock:)"
-            landmarkType = "5">
+            landmarkName = "aw_downloadImageURL_delay(url:showloading:completionBlock:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -104,7 +104,9 @@ public class AWImageLoader : NSObject {
 extension AWImageLoader {
     /// 获取已经处理号的图片
     public func imageFromFastCache(url:NSURL) -> UIImage? {
-        let fetch_key = url.absoluteString
+        guard let fetch_key = url.absoluteString else {
+            return nil
+        }
         return AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage
     
     }
@@ -113,7 +115,9 @@ extension AWImageLoader {
             callback(cached_image, url)
             return
         }
-        let fetch_key = url.absoluteString
+        guard let fetch_key = url.absoluteString else {
+            return
+        }
         /// 用来将图片返回到所有的回调函数
         let f_callback = {
             (image:UIImage) -> () in
@@ -140,7 +144,7 @@ extension AWImageLoader {
             }
             /// no data
             guard let _data = data else {
-                NSLog("no image:%@", url.absoluteString)
+                NSLog("no image:\(url.absoluteString)")
                 f_callback(emptyImage)
                 return
             }

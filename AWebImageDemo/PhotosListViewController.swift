@@ -19,7 +19,7 @@ class PhotosListViewController: UICollectionViewController {
         didSet {
             let loadingHeight : CGFloat = 30.0
             dispatch_async(dispatch_get_main_queue()) { [weak self] () -> () in
-                if let _self = self, _collectionView = _self.collectionView {
+                if let _self = self, let _collectionView = _self.collectionView {
                     var contentInset = _collectionView.contentInset
                     if _self.loading {
                         contentInset.bottom = loadingHeight

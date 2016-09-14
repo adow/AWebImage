@@ -78,7 +78,7 @@ extension PhotoDetailViewController {
             }
             if let data = data {
                 if let json = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                    if let photo_dict = json["photo"] as? [String:AnyObject], image_url = photo_dict["image_url"] as? String{
+                    if let photo_dict = json["photo"] as? [String:AnyObject], let image_url = photo_dict["image_url"] as? String{
                         let url = NSURL(string: image_url)!
                         dispatch_sync(dispatch_get_main_queue(), { 
                             self.imageView.aw_downloadImageURL(url, showLoading: true, completionBlock: { (_, _) in

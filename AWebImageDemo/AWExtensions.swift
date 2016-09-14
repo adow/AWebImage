@@ -43,7 +43,7 @@ extension String {
         return NSString(data: data_decode!, encoding: NSUTF8StringEncoding) as! String
     }
     func stringbyappendingPathcomponent(component:String)->String{
-        return NSURL(string: self)!.URLByAppendingPathComponent(component).absoluteString
+        return NSURL(string: self)!.URLByAppendingPathComponent(component)!.absoluteString!
     }
 }
 extension Int {
