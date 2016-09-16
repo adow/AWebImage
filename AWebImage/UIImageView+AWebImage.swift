@@ -12,6 +12,7 @@ private var imageUrlKey : Void?
 private var imageSetKey : Void?
 private let imageLoadHudTag = 99989
 
+
 public extension UIImageView {
     /// 下载的 imageurl
     public var aw_image_url : NSURL? {

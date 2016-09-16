@@ -17,7 +17,7 @@ private let emptyImage = UIImage()
 // MARK: - AWImageLoaderManager
 private let _sharedManager = AWImageLoaderManager()
 
-private class AWImageLoaderManager {
+public class AWImageLoaderManager {
     /// 用来保存生成好图片
     var fastCache : NSCache!
     /// 回调列表
@@ -86,7 +86,7 @@ extension AWImageLoaderManager {
     
 }
 extension AWImageLoaderManager {
-    func clearCache() {
+    public func clearCache() {
         self.fastCache.removeAllObjects()
         self.sessionConfiguration.URLCache?.removeAllCachedResponses()
     }
