@@ -45,7 +45,7 @@ public class AWImageLoaderManager {
                                                    diskCapacity: 30 * 1024 * 1024,
                                                    diskPath: "adow.adimageloader.urlcache")
     }
-    static var sharedManager : AWImageLoaderManager {
+    public static var sharedManager : AWImageLoaderManager {
         return _sharedManager
     }
     
