@@ -15,9 +15,9 @@ private let imageLoadHudTag = 99989
 
 public extension UIImageView {
     /// 下载的 imageurl
-    public var aw_image_url : NSURL? {
+    public var aw_image_url : URL? {
         get{
-            return objc_getAssociatedObject(self, &imageUrlKey) as? NSURL
+            return objc_getAssociatedObject(self, &imageUrlKey) as? URL
         }
         set {
             objc_setAssociatedObject(self, &imageUrlKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -40,12 +40,12 @@ extension UIImageView {
             return
         }
         else {
-            let hud = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            let hud = UIActivityIndicatorView(activityIndicatorStyle: .gray)
             hud.tag = imageLoadHudTag
             hud.center = self.center
             hud.hidesWhenStopped = true
             self.addSubview(hud)
-            self.bringSubviewToFront(hud)
+            self.bringSubview(toFront: hud)
             hud.center = self.center
             hud.startAnimating()
         }
@@ -60,11 +60,11 @@ extension UIImageView {
 }
 public extension UIImageView {
     /// 为了要执行 selector
-    private class _AWImageLoaderPar :NSObject{
-        var url : NSURL!
+    fileprivate class _AWImageLoaderPar :NSObject{
+        var url : URL!
         var showLoading:Bool!
         var completionBlock : AWImageLoaderCallback!
-        init(url:NSURL, showLoading:Bool, completionBlock : AWImageLoaderCallback) {
+        init(url:URL, showLoading:Bool, completionBlock : @escaping AWImageLoaderCallback) {
             self.url = url
             self.showLoading = showLoading
             self.completionBlock = completionBlock
@@ -72,9 +72,9 @@ public extension UIImageView {
         
     }
     /// 下载图片,如果有 delay 参数，那他会在 NSDefaultRunLoopMode 模式下运行
-    public func aw_downloadImageURL(url:NSURL,
+    public func aw_downloadImageURL(_ url:URL,
                                    showLoading:Bool,
-                                   completionBlock:AWImageLoaderCallback){
+                                   completionBlock:@escaping AWImageLoaderCallback){
         /// 先设置要下载的图片地址
         self.aw_image_url = url
         if showLoading {
@@ -91,7 +91,7 @@ public extension UIImageView {
             }
             /// 校验一下现在是否还需要显示这个地址的图片
             if _aw_image_url.absoluteString != url.absoluteString {
-                NSLog("url not match:%@,%@", _aw_image_url,url)
+                NSLog("url not match:\(_aw_image_url),\(url)")
             }
             else{
                 self?.aw_setImage(image)
@@ -100,7 +100,7 @@ public extension UIImageView {
         }
     }
     /// 延时提交的方法，由于这个方法延时提交，所以可能 cell 在下一次的 reuse 中已经获得了 image， 而此时又开始执行这个方法时就第二次获得了内容，他又会替换第一次的内容；
-    @objc private func aw_downloadImageURL_p(par:_AWImageLoaderPar) {
+    @objc fileprivate func aw_downloadImageURL_p(_ par:_AWImageLoaderPar) {
         if self.aw_image_set {
             NSLog("image existed")
             return
@@ -108,9 +108,9 @@ public extension UIImageView {
         self.aw_downloadImageURL(par.url, showLoading: par.showLoading, completionBlock: par.completionBlock)
     }
     /// 只在 DefaultRunLoopMode 模式中加载
-    public func aw_downloadImageURL_delay(url:NSURL,
+    public func aw_downloadImageURL_delay(_ url:URL,
                                    showloading:Bool,
-                                   completionBlock : AWImageLoaderCallback) {
+                                   completionBlock : @escaping AWImageLoaderCallback) {
         /// 要一开始就重置状态，因为后面的方法被延时提交，而在返回的时候可能已经又其他图片从快速缓存中获取了
         self.aw_image_set = false
         /// 如果已经有存在的图片，就不要在 DefaultRunLoopMode 中加载
@@ -124,10 +124,10 @@ public extension UIImageView {
         }
         /// 开始延时获取图片任务
         let par = _AWImageLoaderPar(url: url, showLoading: showloading, completionBlock: completionBlock)
-        self.performSelector(#selector(UIImageView.aw_downloadImageURL_p(_:)), withObject: par, afterDelay: 0.0, inModes: [NSDefaultRunLoopMode,])
+        self.perform(#selector(UIImageView.aw_downloadImageURL_p(_:)), with: par, afterDelay: 0.0, inModes: [RunLoopMode.defaultRunLoopMode,])
     }
     @objc
-    private func aw_setImage(image:UIImage){
+    fileprivate func aw_setImage(_ image:UIImage){
         self.image = image
         self.aw_image_set = true
     }

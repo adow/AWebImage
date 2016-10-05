@@ -8,7 +8,7 @@
 
 import Foundation
 extension String {
-    static func stringFromAnyObject(anyObject:AnyObject?) -> String?{
+    static func stringFromAnyObject(_ anyObject:AnyObject?) -> String?{
         if let s = anyObject as? String {
             return s
         }
@@ -22,8 +22,8 @@ extension String {
             return nil
         }
     }
-    static func isNilOrEmpty(str:String?) -> Bool{
-        let length = str?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) ?? 0
+    static func isNilOrEmpty(_ str:String?) -> Bool{
+        let length = str?.lengthOfBytes(using: String.Encoding.utf8) ?? 0
         return length == 0
     }
 }
@@ -32,22 +32,22 @@ extension String {
         return NSString(string: self).doubleValue
     }
     func bus_escape() -> (String) {
-        let raw: NSString = self
-        let str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[].",":/?&=;+!@#$()',*",CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding))
-        return str as String
+        let raw: NSString = self as NSString
+        let str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[]." as CFString!,":/?&=;+!@#$()',*" as CFString!,CFStringConvertNSStringEncodingToEncoding(String.Encoding.utf8.rawValue))
+        return str as! String
     }
     /// 解码 base64
     func bus_decodeBase64()->String{
         //        let data = self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        let data_decode = NSData(base64EncodedString: self, options: NSDataBase64DecodingOptions(rawValue: 0))
-        return NSString(data: data_decode!, encoding: NSUTF8StringEncoding) as! String
+        let data_decode = Data(base64Encoded: self, options: NSData.Base64DecodingOptions(rawValue: 0))
+        return NSString(data: data_decode!, encoding: String.Encoding.utf8.rawValue) as! String
     }
-    func stringbyappendingPathcomponent(component:String)->String{
-        return NSURL(string: self)!.URLByAppendingPathComponent(component)!.absoluteString!
+    func stringbyappendingPathcomponent(_ component:String)->String{
+        return URL(string: self)!.appendingPathComponent(component).absoluteString
     }
 }
 extension Int {
-    static func valueFromAnyObject(anyObject:AnyObject?) -> Int? {
+    static func valueFromAnyObject(_ anyObject:AnyObject?) -> Int? {
         if let v = anyObject as? Int {
             return v
         }
@@ -60,7 +60,7 @@ extension Int {
     }
 }
 extension Double {
-    static func valueFromAnyObject(anyObject:AnyObject?) -> Double? {
+    static func valueFromAnyObject(_ anyObject:AnyObject?) -> Double? {
         if let v = anyObject as? Double {
             return v
         }

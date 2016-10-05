@@ -22,18 +22,18 @@ class PhotoDetailViewController: UIViewController {
 //            
 //        }
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loadPhoto(self.imageId)
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
 
@@ -68,19 +68,19 @@ extension PhotoDetailViewController {
             self.image_url = String.stringFromAnyObject(dict["image_url"])
         }
     }
-    func loadPhoto(imageId:Int) {
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfiguration)
-        let url = NSURL(string: "https://api.500px.com/v1/photos/\(imageId)?consumer_key=7iL5EFteZ0j3OexGdDxnPANksfPwQZtD5SPaZhne")!
-        let task = session.dataTaskWithURL(url) { (data, _, error) in
+    func loadPhoto(_ imageId:Int) {
+        let sessionConfiguration = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfiguration)
+        let url = URL(string: "https://api.500px.com/v1/photos/\(imageId)?consumer_key=7iL5EFteZ0j3OexGdDxnPANksfPwQZtD5SPaZhne")!
+        let task = session.dataTask(with: url, completionHandler: { (data, _, error) in
             if let error = error {
-                NSLog("error:%@", error)
+                NSLog("error:\(error.localizedDescription)")
             }
             if let data = data {
-                if let json = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
+                if let json = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)) as? [String:AnyObject]{
                     if let photo_dict = json["photo"] as? [String:AnyObject], let image_url = photo_dict["image_url"] as? String{
-                        let url = NSURL(string: image_url)!
-                        dispatch_sync(dispatch_get_main_queue(), { 
+                        let url = URL(string: image_url)!
+                        DispatchQueue.main.sync(execute: { 
                             self.imageView.aw_downloadImageURL(url, showLoading: true, completionBlock: { (_, _) in
                                 
                             })    
@@ -89,7 +89,7 @@ extension PhotoDetailViewController {
                     }
                 }
             }
-        }
+        }) 
         task.resume()
     }
     
