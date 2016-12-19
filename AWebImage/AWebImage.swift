@@ -110,7 +110,9 @@ extension AWImageLoader {
         return AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage
     
     }
-    public func downloadImage(url:NSURL, callback : AWImageLoaderCallback){
+    public func downloadImage(url:NSURL,
+                              callback : AWImageLoaderCallback){
+        
         if let cached_image = self.imageFromFastCache(url) {
             callback(cached_image, url)
             return
