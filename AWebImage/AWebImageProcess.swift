@@ -176,31 +176,20 @@ public struct AWebCropImageProcess : AWebImageProcess {
     public func make(fromInputImage inputImage: UIImage) -> UIImage? {
         let (original_width, original_height) = (inputImage.size.width, inputImage.size.height)
         var (resize_width, resize_height) = (self.targetWidth, self.targetHeight)
-//        let original_direction = original_width > original_height
-//        let target_direction = self.targetWidth > self.targetHeight
-//        if original_direction != target_direction {
-//            if original_width < original_height {
-//                resize_width = targetWidth
-//                resize_height = resize_width * original_height / original_width
-//            }
-//            else {
-//                resize_height = targetHeight
-//                resize_width = resize_height * original_width / original_height
-//            }
+//        if original_width < original_height {
+//            resize_width = targetWidth
+//            resize_height = resize_width * original_height / original_width
 //        }
 //        else {
-//            if original_width < original_height {
-//                resize_width = targetWidth
-//                resize_height = resize_width * original_height / original_width
-//            }
-//            else {
-//                resize_height = targetHeight
-//                resize_width = resize_height * original_width / original_height
-//            }
+//            resize_height = targetHeight
+//            resize_width = resize_height * original_width / original_height
 //        }
-        if original_width < original_height {
+        let original_direction = original_width / original_height
+        let target_direction = targetWidth / targetHeight
+        if original_direction < target_direction {
             resize_width = targetWidth
             resize_height = resize_width * original_height / original_width
+            
         }
         else {
             resize_height = targetHeight
@@ -209,7 +198,7 @@ public struct AWebCropImageProcess : AWebImageProcess {
         let left : CGFloat = (self.targetWidth - resize_width) / 2.0
         let top : CGFloat = (self.targetHeight - resize_height) / 2.0
         let rect = CGRectMake(left, top, resize_width, resize_height)
-        debugPrint(rect)
+//        debugPrint(rect)
         UIGraphicsBeginImageContext(CGSizeMake(self.targetWidth, self.targetHeight))
         let context = UIGraphicsGetCurrentContext()!
         CGContextSaveGState(context)
