@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "495707318.092799"
+            timestampString = "503808099.290009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "aw_downloadImageURL(url:showLoading:completionBlock:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "aw_downloadImageURL(_:showLoading:withImageProcess:completionBlock:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -180,12 +180,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "495707318.092799"
+            timestampString = "503808099.290009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "aw_downloadImageURL_p(par:)"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "aw_downloadImageURL_p(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -196,12 +196,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AWebImage/UIImageView+AWebImage.swift"
-            timestampString = "495707318.092799"
+            timestampString = "503808444.421246"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "aw_downloadImageURL_delay(url:showloading:completionBlock:)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "aw_downloadImageURL_delay(_:showloading:withImageProcess:completionBlock:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                         forBarMetrics: UIBarMetrics.Default)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightGrayColor(),]
         
-        self.testImageProcess()
+//        self.testImageProcess()
         return true
     }
 

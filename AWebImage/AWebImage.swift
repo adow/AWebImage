@@ -102,22 +102,32 @@ public class AWImageLoader : NSObject {
 }
 
 extension AWImageLoader {
-    /// 获取已经处理号的图片
-    public func imageFromFastCache(url:NSURL) -> UIImage? {
-        guard let fetch_key = url.absoluteString else {
+    public func cacheKeyFromUrl(url : NSURL, andImageProcess imageProcess : AWebImageProcess? = nil) -> String? {
+        guard let path = url.absoluteString else {
             return nil
         }
-        return AWImageLoaderManager.sharedManager.fastCache.objectForKey(fetch_key) as? UIImage
+        var cache_key = path
+        if let _imageProcess = imageProcess {
+            cache_key = "\(cache_key).\(_imageProcess.cacheKey)"
+        }
+        return cache_key
+    }
+    /// 获取已经处理号的图片
+    public func imageFromFastCache(cacheKey : String) -> UIImage? {
+        return AWImageLoaderManager.sharedManager.fastCache.objectForKey(cacheKey) as? UIImage
     
     }
     public func downloadImage(url:NSURL,
+                              withImageProcess imageProcess : AWebImageProcess? = nil,
                               callback : AWImageLoaderCallback){
         
-        if let cached_image = self.imageFromFastCache(url) {
-            callback(cached_image, url)
+        
+        guard let fetch_key = self.cacheKeyFromUrl(url, andImageProcess: imageProcess) else {
             return
         }
-        guard let fetch_key = url.absoluteString else {
+//        debugPrint(fetch_key)
+        if let cached_image = self.imageFromFastCache(fetch_key) {
+            callback(cached_image, url)
             return
         }
         /// 用来将图片返回到所有的回调函数
@@ -153,8 +163,13 @@ extension AWImageLoader {
             dispatch_async(AWImageLoaderManager.sharedManager.imageDecodeQueue, {
 //                NSLog("origin:%@", url.absoluteString)
                 let image = UIImage(data: _data) ?? emptyImage
-                AWImageLoaderManager.sharedManager.fastCache.setObject(image, forKey: fetch_key) /// fastCache
-                f_callback(image)
+                /// 图像处理
+                var output_image = image
+                if let _imageProcess = imageProcess {
+                    output_image = _imageProcess.make(fromInputImage: image) ?? image
+                }
+                AWImageLoaderManager.sharedManager.fastCache.setObject(output_image, forKey: fetch_key) /// fastCache
+                f_callback(output_image)
                 return
             })
         }
