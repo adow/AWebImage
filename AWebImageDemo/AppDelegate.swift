@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage.aw_imageWithColor(UIColor.white),
                                                         for: UIBarMetrics.default)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightGray,]
+        
+//        self.testImageProcess()
         return true
     }
 
@@ -47,6 +50,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+extension AppDelegate {
+//    func testImageProcess() {
+//        let inputImage = UIImage(named: "test2")!
+//        let process = AWebCropImageProcess(targetWidth: 750.0, targetHeight: 187.5)
+//        let outputImage = process.make(fromInputImage: inputImage)
+//        debugPrint(outputImage)
+//    }
 }
 extension UIImage {
     /// 用颜色来创建一个图片

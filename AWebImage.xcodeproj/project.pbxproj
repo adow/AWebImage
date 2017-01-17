@@ -19,6 +19,7 @@
 		688A76551D0D0FD0002CC798 /* AWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 688A764D1D0D0FD0002CC798 /* AWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		688A765B1D0D1012002CC798 /* UIImageView+AWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A76591D0D1012002CC798 /* UIImageView+AWebImage.swift */; };
 		688A765C1D0D1012002CC798 /* AWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A765A1D0D1012002CC798 /* AWebImage.swift */; };
+		689332B31E06C6AA00F495AE /* AWebImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689332B21E06C6AA00F495AE /* AWebImageProcess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		688A76511D0D0FD0002CC798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		688A76591D0D1012002CC798 /* UIImageView+AWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+AWebImage.swift"; sourceTree = "<group>"; };
 		688A765A1D0D1012002CC798 /* AWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWebImage.swift; sourceTree = "<group>"; };
+		689332B21E06C6AA00F495AE /* AWebImageProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWebImageProcess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				688A765A1D0D1012002CC798 /* AWebImage.swift */,
 				688A76591D0D1012002CC798 /* UIImageView+AWebImage.swift */,
+				689332B21E06C6AA00F495AE /* AWebImageProcess.swift */,
 				688A764F1D0D0FD0002CC798 /* AWebImage.h */,
 				688A76511D0D0FD0002CC798 /* Info.plist */,
 			);
@@ -188,11 +191,11 @@
 				TargetAttributes = {
 					688A76151D0D0CFE002CC798 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					688A764C1D0D0FD0002CC798 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				688A765C1D0D1012002CC798 /* AWebImage.swift in Sources */,
+				689332B31E06C6AA00F495AE /* AWebImageProcess.swift in Sources */,
 				688A765B1D0D1012002CC798 /* UIImageView+AWebImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,7 +334,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -371,7 +375,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

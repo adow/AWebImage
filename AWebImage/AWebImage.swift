@@ -102,27 +102,44 @@ open class AWImageLoader : NSObject {
 }
 
 extension AWImageLoader {
+    public func cacheKeyFromUrl(url : URL, andImageProcess imageProcess : AWebImageProcess? = nil) -> String? {
+        let path = url.absoluteString
+        var cache_key = path
+        if let _imageProcess = imageProcess {
+            cache_key = "\(cache_key).\(_imageProcess.cacheKey)"
+        }
+        return cache_key
+    }
     /// 获取已经处理号的图片
-    public func imageFromFastCache(_ url:URL) -> UIImage? {
-        let fetch_key = url.absoluteString
-        return AWImageLoaderManager.sharedManager.fastCache.object(forKey: fetch_key as NSString) as? UIImage
+    public func imageFromFastCache(cacheKey : String) -> UIImage? {
+        return AWImageLoaderManager.sharedManager.fastCache.object(forKey: cacheKey as NSString) as? UIImage
     
     }
-    public func downloadImage(_ url:URL, callback : @escaping AWImageLoaderCallback){
-        if let cached_image = self.imageFromFastCache(url) {
+    public func downloadImage(url:URL,
+                              withImageProcess imageProcess : AWebImageProcess? = nil,
+                              callback : @escaping AWImageLoaderCallback){
+        
+        
+        guard let fetch_key = self.cacheKeyFromUrl(url: url as URL, andImageProcess: imageProcess) else {
+            return
+        }
+//        debugPrint(fetch_key)
+        if let cached_image = self.imageFromFastCache(cacheKey: fetch_key) {
             callback(cached_image, url)
             return
         }
-        let fetch_key = url.absoluteString
         /// 用来将图片返回到所有的回调函数
         let f_callback = {
             (image:UIImage) -> () in
             if let f_list = AWImageLoaderManager.sharedManager.readFetch(fetch_key) {
                 AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
-                DispatchQueue.concurrentPerform(iterations: f_list.count, execute: { (i) in
-                    let f = f_list[i]
-                    f(image,url)
-                })
+                DispatchQueue.main.async {
+                    DispatchQueue.concurrentPerform(iterations: f_list.count, execute: { (i) in
+                        let f = f_list[i]
+                        f(image,url)
+                    })
+                }
+                
             }
         }
         /// origin
@@ -147,7 +164,13 @@ extension AWImageLoader {
             AWImageLoaderManager.sharedManager.imageDecodeQueue.async(execute: {
 //                NSLog("origin:%@", url.absoluteString)
                 let image = UIImage(data: _data) ?? emptyImage
-                AWImageLoaderManager.sharedManager.fastCache.setObject(image, forKey: fetch_key as NSString) /// fastCachehttps://github.com/vim                f_callback(image)
+                /// 图像处理
+                var output_image = image
+                if let _imageProcess = imageProcess {
+                    output_image = _imageProcess.make(fromInputImage: image) ?? image
+                }
+                AWImageLoaderManager.sharedManager.fastCache.setObject(output_image, forKey: fetch_key as NSString) /// fastCache
+                f_callback(output_image)
                 return
             })
         }) 

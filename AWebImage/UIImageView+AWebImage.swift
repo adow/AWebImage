@@ -63,10 +63,12 @@ public extension UIImageView {
     fileprivate class _AWImageLoaderPar :NSObject{
         var url : URL!
         var showLoading:Bool!
+        var imageProcess : AWebImageProcess? = nil
         var completionBlock : AWImageLoaderCallback!
-        init(url:URL, showLoading:Bool, completionBlock : @escaping AWImageLoaderCallback) {
+        init(url:URL, showLoading:Bool, imageProcess: AWebImageProcess?, completionBlock : @escaping AWImageLoaderCallback) {
             self.url = url
             self.showLoading = showLoading
+            self.imageProcess = imageProcess
             self.completionBlock = completionBlock
         }
         
@@ -74,6 +76,7 @@ public extension UIImageView {
     /// 下载图片,如果有 delay 参数，那他会在 NSDefaultRunLoopMode 模式下运行
     public func aw_downloadImageURL(_ url:URL,
                                    showLoading:Bool,
+                                   withImageProcess imageProcess : AWebImageProcess? = nil,
                                    completionBlock:@escaping AWImageLoaderCallback){
         /// 先设置要下载的图片地址
         self.aw_image_url = url
@@ -81,7 +84,7 @@ public extension UIImageView {
             self.aw_showLoading()
         }
         let loader = AWImageLoader()
-        loader.downloadImage(url) { [weak self](image, url) in
+        loader.downloadImage(url: url, withImageProcess: imageProcess) { [weak self](image, url) in
             if showLoading {
                 self?.aw_hideLoading()
             }
@@ -105,17 +108,23 @@ public extension UIImageView {
             NSLog("image existed")
             return
         }
-        self.aw_downloadImageURL(par.url, showLoading: par.showLoading, completionBlock: par.completionBlock)
+        self.aw_downloadImageURL(par.url, showLoading: par.showLoading,
+                                 withImageProcess: par.imageProcess,
+                                 completionBlock: par.completionBlock)
     }
     /// 只在 DefaultRunLoopMode 模式中加载
     public func aw_downloadImageURL_delay(_ url:URL,
                                    showloading:Bool,
+                                   withImageProcess imageProcess : AWebImageProcess? = nil,
                                    completionBlock : @escaping AWImageLoaderCallback) {
         /// 要一开始就重置状态，因为后面的方法被延时提交，而在返回的时候可能已经又其他图片从快速缓存中获取了
         self.aw_image_set = false
         /// 如果已经有存在的图片，就不要在 DefaultRunLoopMode 中加载
         let loader = AWImageLoader()
-        if let cached_image = loader.imageFromFastCache(url) {
+        guard let fetch_key = loader.cacheKeyFromUrl(url: url, andImageProcess: imageProcess) else {
+            return
+        }
+        if let cached_image = loader.imageFromFastCache(cacheKey: fetch_key) {
             self.aw_hideLoading()
             self.aw_setImage(cached_image)
             self.aw_image_url = url
@@ -123,7 +132,10 @@ public extension UIImageView {
             return
         }
         /// 开始延时获取图片任务
-        let par = _AWImageLoaderPar(url: url, showLoading: showloading, completionBlock: completionBlock)
+        let par = _AWImageLoaderPar(url: url,
+                                    showLoading: showloading,
+                                    imageProcess: imageProcess ,
+                                    completionBlock: completionBlock)
         self.perform(#selector(UIImageView.aw_downloadImageURL_p(_:)), with: par, afterDelay: 0.0, inModes: [RunLoopMode.defaultRunLoopMode,])
     }
     @objc

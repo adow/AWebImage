@@ -47,6 +47,8 @@ class PhotosListViewController: UICollectionViewController {
             
         }
     }
+    let imageProcess = AWebRoundImageProcess(cornerRadius: 10.0)
+//    let imageProcess = AWebCircleImageProcess()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -127,7 +129,10 @@ class PhotosListViewController: UICollectionViewController {
 //                imageView.aw_downloadImageURL(photo.imageURL, showLoading: true, completionBlock: { (_, _) in
 //                    
 //                })
-                imageView.aw_downloadImageURL_delay(photo.imageURL, showloading: true, completionBlock: { (_, _) in
+                imageView.aw_downloadImageURL_delay(photo.imageURL,
+                                                    showloading: true,
+                                                    withImageProcess: self.imageProcess,
+                                                    completionBlock: { (_, _) in
                     
                 })
             }
