@@ -26,7 +26,7 @@
 
 在项目中创建 Cartfile 文件，并添加下面内容
 
-	git "https://github.com/adow/AWebImage.git" >= 0.1.0
+	git "https://github.com/adow/AWebImage.git" >= 0.3.0
 	
 运行 `Carthage update`, 获取 AWebImage;
 
@@ -48,7 +48,7 @@
 	target '对应的 Target 名字'
 	use_frameworks!
 
-	pod 'AWebImage', '~> 0.1.0'
+	pod 'AWebImage', '~> 0.3.0'
 	
 运行
 
