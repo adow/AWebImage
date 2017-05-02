@@ -63,7 +63,7 @@ public struct AWebCircleImageProcess : AWebImageProcess {
         context.saveGState()
         let path = UIBezierPath(arcCenter: CGPoint(x:inputImage.size.width / 2.0, y:inputImage.size.height / 2.0),
                                 radius: w / 2.0,
-                                startAngle: 0.0, endAngle: CGFloat(M_PI) * 2.0, clockwise: true)
+                                startAngle: 0.0, endAngle: CGFloat(Double.pi) * 2.0, clockwise: true)
         path.addClip()
         inputImage.draw(in: CGRect(x: 0.0, y: 0.0, width: inputImage.size.width, height: inputImage.size.height))
         let image = UIGraphicsGetImageFromCurrentImageContext()

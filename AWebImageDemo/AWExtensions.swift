@@ -34,13 +34,13 @@ extension String {
     func bus_escape() -> (String) {
         let raw: NSString = self as NSString
         let str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[]." as CFString!,":/?&=;+!@#$()',*" as CFString!,CFStringConvertNSStringEncodingToEncoding(String.Encoding.utf8.rawValue))
-        return str as! String
+        return str! as String
     }
     /// 解码 base64
     func bus_decodeBase64()->String{
         //        let data = self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         let data_decode = Data(base64Encoded: self, options: NSData.Base64DecodingOptions(rawValue: 0))
-        return NSString(data: data_decode!, encoding: String.Encoding.utf8.rawValue) as! String
+        return NSString(data: data_decode!, encoding: String.Encoding.utf8.rawValue)! as String
     }
     func stringbyappendingPathcomponent(_ component:String)->String{
         return URL(string: self)!.appendingPathComponent(component).absoluteString
