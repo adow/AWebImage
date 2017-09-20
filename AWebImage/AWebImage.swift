@@ -134,11 +134,15 @@ extension AWImageLoader {
             if let f_list = AWImageLoaderManager.sharedManager.readFetch(fetch_key) {
                 AWImageLoaderManager.sharedManager.removeFetch(fetch_key)
                 DispatchQueue.main.async {
-                    DispatchQueue.concurrentPerform(iterations: f_list.count, execute: { (i) in
-                        let f = f_list[i]
+//                    DispatchQueue.concurrentPerform(iterations: f_list.count, execute: { (i) in
+//                        let f = f_list[i]
+//                        f(image,url)
+//                    })
+                    for f in f_list {
                         f(image,url)
-                    })
+                    }
                 }
+                
                 
             }
         }
