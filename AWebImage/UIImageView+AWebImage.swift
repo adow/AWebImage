@@ -40,12 +40,12 @@ extension UIImageView {
             return
         }
         else {
-            let hud = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            let hud = UIActivityIndicatorView(style: .gray)
             hud.tag = imageLoadHudTag
             hud.center = self.center
             hud.hidesWhenStopped = true
             self.addSubview(hud)
-            self.bringSubview(toFront: hud)
+            self.bringSubviewToFront(hud)
             hud.center = self.center
             hud.startAnimating()
         }
@@ -136,7 +136,7 @@ public extension UIImageView {
                                     showLoading: showloading,
                                     imageProcess: imageProcess ,
                                     completionBlock: completionBlock)
-        self.perform(#selector(UIImageView.aw_downloadImageURL_p(_:)), with: par, afterDelay: 0.0, inModes: [RunLoopMode.defaultRunLoopMode,])
+        self.perform(#selector(UIImageView.aw_downloadImageURL_p(_:)), with: par, afterDelay: 0.0, inModes: [RunLoop.Mode.default,])
     }
     @objc
     fileprivate func aw_setImage(_ image:UIImage){
